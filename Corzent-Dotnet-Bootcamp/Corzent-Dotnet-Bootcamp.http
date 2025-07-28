@@ -1,0 +1,6 @@
+@Corzent_Dotnet_Bootcamp_HostAddress = http://localhost:5034
+
+GET {{Corzent_Dotnet_Bootcamp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -10,13 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IToDoService, ToDoService>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 //Enable the middleware for serving the generated JSON document and the Swagger UI
 if (app.Environment.IsDevelopment())
 {
+    
     app.UseSwagger();
     app.UseSwaggerUI();
 }

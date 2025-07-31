@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corzent-Dotnet-Bootcamp", "Corzent-Dotnet-Bootcamp\Corzent-Dotnet-Bootcamp.csproj", "{2004C969-EF43-41EE-A185-70953CA2F437}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApi.Services", "TaskApi.Services\TaskApi.Services.csproj", "{02F9A54B-F0A3-4025-AC42-005B5A10EA98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApi.Models", "TaskApi.Models\TaskApi.Models.csproj", "{EBC05D17-BB0B-42A6-8B6F-FBA7AC0C5E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2004C969-EF43-41EE-A185-70953CA2F437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2004C969-EF43-41EE-A185-70953CA2F437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2004C969-EF43-41EE-A185-70953CA2F437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F9A54B-F0A3-4025-AC42-005B5A10EA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F9A54B-F0A3-4025-AC42-005B5A10EA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F9A54B-F0A3-4025-AC42-005B5A10EA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F9A54B-F0A3-4025-AC42-005B5A10EA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC05D17-BB0B-42A6-8B6F-FBA7AC0C5E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC05D17-BB0B-42A6-8B6F-FBA7AC0C5E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC05D17-BB0B-42A6-8B6F-FBA7AC0C5E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC05D17-BB0B-42A6-8B6F-FBA7AC0C5E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Corzent_Dotnet_Bootcamp.Models;
+﻿using Microsoft.AspNetCore.Mvc;        
 using Corzent_Dotnet_Bootcamp.Services;
-
+using TaskApi.Models;
 namespace Corzent_Dotnet_Bootcamp.Controllers
 {
     [Route("api/[controller]")]
@@ -10,85 +9,66 @@ namespace Corzent_Dotnet_Bootcamp.Controllers
     {
         private readonly IToDoService _toDoService;
 
-        // Dependency Injection of ToDoService
         public ToDoAppsController(IToDoService toDoService)
         {
             _toDoService = toDoService;
         }
 
-        // GET: api/ToDoApp
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ToDoAppClass>>> GetToDoItems()
+        public async Task<ActionResult<IEnumerable<ToDos>>> GetToDoItems()
         {
             var items = await _toDoService.GetAllAsync();
             return Ok(items);
         }
 
-        // GET: api/ToDoApp/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<ToDoAppClass>> GetToDoItem(int id)
+        public async Task<ActionResult<ToDos>> GetToDoItem(int id)
         {
-            if (id <= 0)
-            {
-                return BadRequest("Invalid ID.");
-            }
-
             var item = await _toDoService.GetByIdAsync(id);
             if (item == null)
-            {
                 return NotFound($"No ToDo item found with ID {id}");
-            }
 
             return Ok(item);
         }
 
-        // POST: api/ToDoApp
         [HttpPost]
-        public async Task<ActionResult<ToDoAppClass>> CreateToDoItem(ToDoAppClass toDoItem)
+        public async Task<ActionResult<ToDos>> CreateToDoItem([FromBody] ToDos toDoItem)
         {
             if (toDoItem == null)
-            {
                 return BadRequest("Item data cannot be null.");
-            }
 
             var createdItem = await _toDoService.CreateAsync(toDoItem);
             return CreatedAtAction(nameof(GetToDoItem), new { id = createdItem.Id }, createdItem);
         }
 
-        // PUT: api/ToDoApp/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateToDoItem(int id, ToDoAppClass toDoItem)
+        public async Task<ActionResult<ToDos>> UpdateToDoItem(int id, [FromBody] ToDos toDoItem)
         {
-            if (id <= 0 || toDoItem == null)
-            {
+            if (toDoItem == null)
                 return BadRequest("Invalid data.");
-            }
 
             var success = await _toDoService.UpdateAsync(id, toDoItem);
             if (!success)
-            {
                 return NotFound($"No ToDo item found with ID {id}");
-            }
 
-            return NoContent();
+            // Return updated item with 200 OK
+            var updatedItem = await _toDoService.GetByIdAsync(id);
+            return Ok(updatedItem);
         }
 
-        // DELETE: api/ToDoApp/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteToDoItem(int id)
         {
-            if (id <= 0)
-            {
-                return BadRequest("Invalid ID.");
-            }
+            var item = await _toDoService.GetByIdAsync(id);
+            if (item == null)
+                return NotFound($"No ToDo item found with ID {id}");
 
             var success = await _toDoService.DeleteAsync(id);
             if (!success)
-            {
                 return NotFound($"No ToDo item found with ID {id}");
-            }
 
-            return NoContent();
+            return Ok(new { message = $"ToDo item with ID {id} deleted successfully." });
         }
+
     }
 }

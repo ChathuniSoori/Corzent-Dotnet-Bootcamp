@@ -1,11 +1,10 @@
-﻿namespace Corzent_Dotnet_Bootcamp.Models
+﻿namespace Corzent_Dotnet_Bootcamp.Models;
+
+public enum PriorityLevel
 {
-    public enum PriorityLevel
-    {
-        Low,
-        Medium,
-        High
-    }
+    Low,
+    Medium,
+    High
 }
 
 

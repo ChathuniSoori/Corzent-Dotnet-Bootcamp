@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskApi.Persistance;
 
@@ -10,9 +11,11 @@ using TaskApi.Persistance;
 namespace TaskApi.Persistance.Migrations
 {
     [DbContext(typeof(ToDoDbContext))]
-    partial class ToDoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250803164912_FixedToDosSeed")]
+    partial class FixedToDosSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

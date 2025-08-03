@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskApi.Persistance;
 
@@ -10,9 +11,11 @@ using TaskApi.Persistance;
 namespace TaskApi.Persistance.Migrations
 {
     [DbContext(typeof(ToDoDbContext))]
-    partial class ToDoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250803163345_ToDoCategories")]
+    partial class ToDoCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,30 +24,6 @@ namespace TaskApi.Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Corzent_Dotnet_Bootcamp.Models.Author", b =>
-                {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AuthorId");
-
-                    b.ToTable("Author");
-
-                    b.HasData(
-                        new
-                        {
-                            AuthorId = 1,
-                            Name = "Admin"
-                        });
-                });
-
             modelBuilder.Entity("Corzent_Dotnet_Bootcamp.Models.ToDos", b =>
                 {
                     b.Property<int>("Id")
@@ -52,9 +31,6 @@ namespace TaskApi.Persistance.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -78,32 +54,18 @@ namespace TaskApi.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.ToTable("ToDos");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            AuthorId = 1,
                             Category = "home todos",
                             Description = "Milk, Bread, Eggs",
                             IsCompleted = false,
                             Name = "Buy groceries-DB",
                             Priority = 1
                         });
-                });
-
-            modelBuilder.Entity("Corzent_Dotnet_Bootcamp.Models.ToDos", b =>
-                {
-                    b.HasOne("Corzent_Dotnet_Bootcamp.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
                 });
 #pragma warning restore 612, 618
         }

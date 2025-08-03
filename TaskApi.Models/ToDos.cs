@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace Corzent_Dotnet_Bootcamp.Models
 {
@@ -12,8 +13,13 @@ namespace Corzent_Dotnet_Bootcamp.Models
 
         [StringLength(500, ErrorMessage = "Description cannot be longer than 500 characters")]
         public string Description { get; set; } = string.Empty;
+        public string Category { get; set; }
+    
 
         public bool IsCompleted { get; set; }
         public PriorityLevel Priority { get; set; }
+
+        public int AuthorId { get; set; }
+        public Author Author { get; set; }
     }
 }

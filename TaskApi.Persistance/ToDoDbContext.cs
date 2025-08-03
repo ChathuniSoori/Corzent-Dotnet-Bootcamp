@@ -15,6 +15,11 @@ namespace TaskApi.Persistance
     public class ToDoDbContext : DbContext
     {
         public DbSet<ToDos> ToDos { get; set; }
+        public ToDoDbContext(DbContextOptions<ToDoDbContext> options) : base(options) { }
+
+        public ToDoDbContext()
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,13 +28,22 @@ namespace TaskApi.Persistance
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Author>().HasData(
+    new Author
+    {
+        AuthorId = 1,
+        Name = "Admin"
+    }
+);
             modelBuilder.Entity<ToDos>().HasData(new ToDos
             {
                 Id = 1,
                 Name = "Buy groceries-DB",
                 Description = "Milk, Bread, Eggs",
                 IsCompleted = false,
-                Priority = PriorityLevel.Medium
+                Priority = PriorityLevel.Medium,
+                Category="home todos",
+                AuthorId = 1,
             });
         }
     }

@@ -10,6 +10,15 @@ namespace TaskApi.Services
     public class ToDoSQLSeverService : IToDoServiceRepository
     {
         private readonly ToDoDbContext _dbContext = new ToDoDbContext();
+        public async Task<List<ToDos>> SearchAsync(string? name, string? category)
+        {
+            return await _dbContext.ToDos
+                .Where(todo =>
+                    (string.IsNullOrWhiteSpace(name) || todo.Name.ToLower().Contains(name.Trim().ToLower())) &&
+                    (string.IsNullOrWhiteSpace(category) || todo.Category.ToLower() == category.Trim().ToLower()))
+                .ToListAsync();
+        }
+
 
         public async Task<List<ToDos>> GetAllAsync()
         {

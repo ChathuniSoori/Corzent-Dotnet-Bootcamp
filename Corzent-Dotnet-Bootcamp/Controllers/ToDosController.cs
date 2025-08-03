@@ -101,5 +101,12 @@ namespace Corzent_Dotnet_Bootcamp.Controllers
             // Return success message
             return Ok(new { message = $"ToDo item with ID {id} deleted successfully." });
         }
+        //[HttpGet("search")]
+        //public async Task<ActionResult<List<ToDoDTO>>> Search([FromQuery] string? name, [FromQuery] string? category)
+        //{
+        //    var results = await _todoservice.SearchAsync(name, category);
+        //    return Ok(_mapper.Map<List<ToDoDTO>>(results));
+        //}
+
     }
 }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Corzent_Dotnet_Bootcamp.Services
 {
-    public interface IToDoService
+    public interface IToDoServiceRepository
     {
         // Get all ToDo items
         Task<List<ToDos>> GetAllAsync();

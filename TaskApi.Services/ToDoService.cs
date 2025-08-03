@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Corzent_Dotnet_Bootcamp.Services
 {
-    public class ToDoService : IToDoService
+    public class ToDoService : IToDoServiceRepository
     {
         // In-memory storage for ToDo items
         private readonly List<ToDos> _items;

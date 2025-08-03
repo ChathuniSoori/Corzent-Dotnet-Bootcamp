@@ -1,4 +1,5 @@
 using Corzent_Dotnet_Bootcamp.Services;
+using TaskApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 // Register our ToDoService with dependency injection
 // This tells the system to use ToDoService whenever IToDoService is requested
-builder.Services.AddScoped<IToDoService, ToDoService>();
+builder.Services.AddScoped<IToDoServiceRepository, ToDoSQLSeverService>();
 
 var app = builder.Build();
 

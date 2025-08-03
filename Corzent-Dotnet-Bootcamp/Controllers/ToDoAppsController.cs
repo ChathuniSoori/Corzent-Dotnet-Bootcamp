@@ -10,10 +10,10 @@ namespace Corzent_Dotnet_Bootcamp.Controllers
     [ApiController]
     public class ToDoAppsController : ControllerBase
     {
-        private readonly IToDoService _toDoService;
+        private readonly IToDoServiceRepository _toDoService;
 
         // Dependency injection of the service
-        public ToDoAppsController(IToDoService toDoService)
+        public ToDoAppsController(IToDoServiceRepository toDoService)
         {
             _toDoService = toDoService;
         }

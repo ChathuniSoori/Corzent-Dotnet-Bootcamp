@@ -3,28 +3,39 @@ using Corzent_Dotnet_Bootcamp.Services;
 using Corzent_Dotnet_Bootcamp.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TaskApi.Services.DTOs;
 
 namespace Corzent_Dotnet_Bootcamp.Controllers
 {
     [Route("api/[controller]")] // Base route: api/ToDoApps
     [ApiController]
-    public class ToDoAppsController : ControllerBase
+    public class ToDosController : ControllerBase
     {
         private readonly IToDoServiceRepository _toDoService;
 
         // Dependency injection of the service
-        public ToDoAppsController(IToDoServiceRepository toDoService)
+        public ToDosController(IToDoServiceRepository toDoService)
         {
             _toDoService = toDoService;
         }
 
         // GET: api/ToDoApps
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ToDos>>> GetToDoItems()
+        public async Task<ActionResult<ICollection<ToDoDTO>>> GetToDoItems()
         {
             // Get all items from service
             var items = await _toDoService.GetAllAsync();
-            return Ok(items); // 200 OK with items
+            var toDoDTO=new List<ToDos>();
+            foreach (var item in items)
+            {
+                toDoDTO.Add(new ToDos
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                });
+
+            }
+            return Ok(toDoDTO); // 200 OK with items
         }
 
         // GET: api/ToDoApps/5
